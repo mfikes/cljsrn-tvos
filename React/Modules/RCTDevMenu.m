@@ -138,15 +138,15 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 {
 #if TARGET_OS_IOS
   UIActionSheet *_actionSheet;
+  NSArray<RCTDevMenuItem *> *_presentedItems;
 #elif TARGET_OS_TV
-  
+  UIAlertController *_alertCtrl;
 #endif
   NSUserDefaults *_defaults;
   NSMutableDictionary *_settings;
   NSURLSessionDataTask *_updateTask;
   NSURL *_liveReloadURL;
   BOOL _jsLoaded;
-  NSArray<RCTDevMenuItem *> *_presentedItems;
   NSMutableArray<RCTDevMenuItem *> *_extraMenuItems;
   NSString *_webSocketExecutorName;
   NSString *_executorOverride;
@@ -356,11 +356,13 @@ RCT_EXPORT_MODULE()
 
 - (void)invalidate
 {
-  _presentedItems = nil;
   [_updateTask cancel];
 #if TARGET_OS_IOS
+  _presentedItems = nil;
   [_actionSheet dismissWithClickedButtonIndex:_actionSheet.cancelButtonIndex animated:YES];
 #elif TARGET_OS_TV
+  [_alertCtrl dismissViewControllerAnimated:YES completion:nil];
+  //TODO: Handle cancel button psuedo click like action sheet
 #endif
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -382,6 +384,12 @@ RCT_EXPORT_MODULE()
     [self show];
   }
 #elif TARGET_OS_TV
+  if(_alertCtrl) {
+    [_alertCtrl dismissViewControllerAnimated:YES completion:nil];
+    _alertCtrl = nil;
+  } else {
+    [self show];
+  }
 #endif
 }
 
@@ -422,6 +430,13 @@ RCT_EXPORT_MODULE()
         nil);
       [alert show];
 #elif TARGET_OS_TV
+      UIAlertController *alert = RCTAlertView(
+        [NSString stringWithFormat:@"%@ Debugger Unavailable", _webSocketExecutorName],
+        [NSString stringWithFormat:@"You need to include the RCTWebSocket library to enable %@ debugging", _webSocketExecutorName],
+        nil,
+        @"OK",
+        nil);
+      [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 #endif
     }]];
   } else {
@@ -483,6 +498,49 @@ RCT_EXPORT_METHOD(show)
   _actionSheet = actionSheet;
   _presentedItems = items;
 #elif TARGET_OS_TV
+  if (_alertCtrl || !_bridge || RCTRunningInAppExtension()) {
+    return;
+  }
+  
+  UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"React Native" message:@"Developer Menu" preferredStyle:UIAlertControllerStyleActionSheet];
+  
+  NSArray<RCTDevMenuItem *> *items = [self menuItems];
+  for (RCTDevMenuItem *item in items) {
+    switch (item.type) {
+      case RCTDevMenuTypeButton: {
+        UIAlertAction *buttonAction = [UIAlertAction actionWithTitle:item.title
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull __unused action) {
+                                                               [item callHandler];
+                                                             }];
+        [alertCtrl addAction:buttonAction];
+        break;
+      }
+        
+      case RCTDevMenuTypeToggle: {
+        BOOL selected = [item.value boolValue];
+        UIAlertAction *toggleAction = [UIAlertAction actionWithTitle:selected ? item.selectedTitle : item.title
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull __unused action) {
+                                                               BOOL value = [_settings[item.key] boolValue];
+                                                               [self updateSetting:item.key value:@(!value)];
+                                                             }];
+        [alertCtrl addAction:toggleAction];
+        break;
+      }
+    }
+  }
+  
+  // Add a cancel action
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction * _Nonnull __unused action) {
+                                                         [self toggle];
+                                                       }];
+  [alertCtrl addAction:cancelAction];
+  
+  [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertCtrl animated:YES completion:nil];
+  _alertCtrl = alertCtrl;
 #endif
 }
 
@@ -508,7 +566,6 @@ RCT_EXPORT_METHOD(show)
   }
   return;
 }
-#elif TARGET_OS_TV
 #endif
 
 RCT_EXPORT_METHOD(reload)
