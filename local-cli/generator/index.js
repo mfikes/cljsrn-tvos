@@ -39,6 +39,11 @@ module.exports = yeoman.generators.NamedBase.extend({
         local: require.resolve(path.resolve(__dirname, '..', 'generator-ios'))
       });
     }
+    if (!this.options['skip-tvos']) {
+      this.composeWith('react:tvos', args, {
+        local: require.resolve(path.resolve(__dirname, '..', 'generator-tvos'))
+      });
+    }
     if (!this.options['skip-android']) {
       this.composeWith('react:android', args, {
         local: require.resolve(path.resolve(__dirname, '..', 'generator-android'))
@@ -72,6 +77,13 @@ module.exports = yeoman.generators.NamedBase.extend({
       this.fs.copyTpl(
         this.templatePath('index.ios.js'),
         this.destinationPath('index.ios.js'),
+        {name: this.name}
+      );
+    }
+    if (!this.options['skip-tvos']) {
+      this.fs.copyTpl(
+        this.templatePath('index.tvos.js'),
+        this.destinationPath('index.tvos.js'),
         {name: this.name}
       );
     }
