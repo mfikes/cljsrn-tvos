@@ -8,9 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		134814061AA4E45400B7C361 /* RCTLocationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 134814051AA4E45400B7C361 /* RCTLocationObserver.m */; };
+		2CE53ACF1BF716A900326803 /* RCTLocationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 134814051AA4E45400B7C361 /* RCTLocationObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2CE53AD11BF716A900326803 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -26,9 +36,17 @@
 		134814041AA4E45400B7C361 /* RCTLocationObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTLocationObserver.h; sourceTree = "<group>"; };
 		134814051AA4E45400B7C361 /* RCTLocationObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTLocationObserver.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRCTGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE53AD51BF716A900326803 /* libRCTGeolocationTVOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTGeolocationTVOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2CE53AD01BF716A900326803 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D81A9E6C8500147676 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +71,7 @@
 				134814041AA4E45400B7C361 /* RCTLocationObserver.h */,
 				134814051AA4E45400B7C361 /* RCTLocationObserver.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				2CE53AD51BF716A900326803 /* libRCTGeolocationTVOS.a */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -61,6 +80,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2CE53ACD1BF716A900326803 /* RCTGeolocationTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE53AD21BF716A900326803 /* Build configuration list for PBXNativeTarget "RCTGeolocationTVOS" */;
+			buildPhases = (
+				2CE53ACE1BF716A900326803 /* Sources */,
+				2CE53AD01BF716A900326803 /* Frameworks */,
+				2CE53AD11BF716A900326803 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCTGeolocationTVOS;
+			productName = RCTDataManager;
+			productReference = 2CE53AD51BF716A900326803 /* libRCTGeolocationTVOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		58B511DA1A9E6C8500147676 /* RCTGeolocation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RCTGeolocation" */;
@@ -105,11 +141,20 @@
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RCTGeolocation */,
+				2CE53ACD1BF716A900326803 /* RCTGeolocationTVOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2CE53ACE1BF716A900326803 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE53ACF1BF716A900326803 /* RCTLocationObserver.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,6 +166,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2CE53AD31BF716A900326803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2CE53AD41BF716A900326803 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		58B511ED1A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -243,6 +323,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2CE53AD21BF716A900326803 /* Build configuration list for PBXNativeTarget "RCTGeolocationTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE53AD31BF716A900326803 /* Debug */,
+				2CE53AD41BF716A900326803 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RCTGeolocation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

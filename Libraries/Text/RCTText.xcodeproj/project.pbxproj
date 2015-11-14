@@ -11,6 +11,15 @@
 		131B6AC11AF0CD0600FFC3E0 /* RCTTextViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B6ABF1AF0CD0600FFC3E0 /* RCTTextViewManager.m */; };
 		1362F1001B4D51F400E06D8C /* RCTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1362F0FD1B4D51F400E06D8C /* RCTTextField.m */; };
 		1362F1011B4D51F400E06D8C /* RCTTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1362F0FF1B4D51F400E06D8C /* RCTTextFieldManager.m */; };
+		2CE53B0A1BF7170B00326803 /* RCTTextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511CD1A9E6C5C00147676 /* RCTTextManager.m */; };
+		2CE53B0B1BF7170B00326803 /* RCTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B6ABD1AF0CD0600FFC3E0 /* RCTTextView.m */; };
+		2CE53B0C1BF7170B00326803 /* RCTRawTextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511C71A9E6C5C00147676 /* RCTRawTextManager.m */; };
+		2CE53B0D1BF7170B00326803 /* RCTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1362F0FD1B4D51F400E06D8C /* RCTTextField.m */; };
+		2CE53B0E1BF7170B00326803 /* RCTText.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B512141A9E6EFF00147676 /* RCTText.m */; };
+		2CE53B0F1BF7170B00326803 /* RCTTextFieldManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1362F0FF1B4D51F400E06D8C /* RCTTextFieldManager.m */; };
+		2CE53B101BF7170B00326803 /* RCTTextViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B6ABF1AF0CD0600FFC3E0 /* RCTTextViewManager.m */; };
+		2CE53B111BF7170B00326803 /* RCTShadowRawText.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511C91A9E6C5C00147676 /* RCTShadowRawText.m */; };
+		2CE53B121BF7170B00326803 /* RCTShadowText.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511CB1A9E6C5C00147676 /* RCTShadowText.m */; };
 		58B511CE1A9E6C5C00147676 /* RCTRawTextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511C71A9E6C5C00147676 /* RCTRawTextManager.m */; };
 		58B511CF1A9E6C5C00147676 /* RCTShadowRawText.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511C91A9E6C5C00147676 /* RCTShadowRawText.m */; };
 		58B511D01A9E6C5C00147676 /* RCTShadowText.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B511CB1A9E6C5C00147676 /* RCTShadowText.m */; };
@@ -19,6 +28,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2CE53B141BF7170B00326803 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511991A9E6C1200147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,6 +57,7 @@
 		1362F0FD1B4D51F400E06D8C /* RCTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTextField.m; sourceTree = "<group>"; };
 		1362F0FE1B4D51F400E06D8C /* RCTTextFieldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTextFieldManager.h; sourceTree = "<group>"; };
 		1362F0FF1B4D51F400E06D8C /* RCTTextFieldManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTextFieldManager.m; sourceTree = "<group>"; };
+		2CE53B181BF7170B00326803 /* libRCTTextTVOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTTextTVOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B5119B1A9E6C1200147676 /* libRCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTText.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B511C61A9E6C5C00147676 /* RCTRawTextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTRawTextManager.h; sourceTree = "<group>"; };
 		58B511C71A9E6C5C00147676 /* RCTRawTextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTRawTextManager.m; sourceTree = "<group>"; };
@@ -53,6 +72,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2CE53B131BF7170B00326803 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511981A9E6C1200147676 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				58B5119B1A9E6C1200147676 /* libRCTText.a */,
+				2CE53B181BF7170B00326803 /* libRCTTextTVOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +128,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2CE53B081BF7170B00326803 /* RCTTextTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE53B151BF7170B00326803 /* Build configuration list for PBXNativeTarget "RCTTextTVOS" */;
+			buildPhases = (
+				2CE53B091BF7170B00326803 /* Sources */,
+				2CE53B131BF7170B00326803 /* Frameworks */,
+				2CE53B141BF7170B00326803 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCTTextTVOS;
+			productName = RCTText;
+			productReference = 2CE53B181BF7170B00326803 /* libRCTTextTVOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		58B5119A1A9E6C1200147676 /* RCTText */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511AF1A9E6C1300147676 /* Build configuration list for PBXNativeTarget "RCTText" */;
@@ -145,11 +189,28 @@
 			projectRoot = "";
 			targets = (
 				58B5119A1A9E6C1200147676 /* RCTText */,
+				2CE53B081BF7170B00326803 /* RCTTextTVOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2CE53B091BF7170B00326803 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE53B0A1BF7170B00326803 /* RCTTextManager.m in Sources */,
+				2CE53B0B1BF7170B00326803 /* RCTTextView.m in Sources */,
+				2CE53B0C1BF7170B00326803 /* RCTRawTextManager.m in Sources */,
+				2CE53B0D1BF7170B00326803 /* RCTTextField.m in Sources */,
+				2CE53B0E1BF7170B00326803 /* RCTText.m in Sources */,
+				2CE53B0F1BF7170B00326803 /* RCTTextFieldManager.m in Sources */,
+				2CE53B101BF7170B00326803 /* RCTTextViewManager.m in Sources */,
+				2CE53B111BF7170B00326803 /* RCTShadowRawText.m in Sources */,
+				2CE53B121BF7170B00326803 /* RCTShadowText.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511971A9E6C1200147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,6 +230,39 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2CE53B161BF7170B00326803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2CE53B171BF7170B00326803 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		58B511AD1A9E6C1300147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -289,6 +383,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2CE53B151BF7170B00326803 /* Build configuration list for PBXNativeTarget "RCTTextTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE53B161BF7170B00326803 /* Debug */,
+				2CE53B171BF7170B00326803 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58B511961A9E6C1200147676 /* Build configuration list for PBXProject "RCTText" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

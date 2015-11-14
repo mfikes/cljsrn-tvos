@@ -360,6 +360,7 @@ UIWindow *RCTKeyWindow(void)
   return RCTSharedApplication().keyWindow;
 }
 
+#if TARGET_OS_IOS
 UIAlertView *RCTAlertView(NSString *title,
                           NSString *message,
                           id delegate,
@@ -384,6 +385,8 @@ UIAlertView *RCTAlertView(NSString *title,
   }
   return alertView;
 }
+#elif TARGET_OS_TV
+#endif
 
 BOOL RCTImageHasAlpha(CGImageRef image)
 {

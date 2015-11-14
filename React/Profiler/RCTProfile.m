@@ -594,11 +594,14 @@ void RCTProfileSendResult(RCTBridge *bridge, NSString *route, NSData *data)
 
        if (message.length) {
          dispatch_async(dispatch_get_main_queue(), ^{
+#if TARGET_OS_IOS
            [[[UIAlertView alloc] initWithTitle:@"Profile"
                                        message:message
                                       delegate:nil
                              cancelButtonTitle:@"OK"
                              otherButtonTitles:nil] show];
+#elif TARGET_OS_TV
+#endif
          });
        }
      }

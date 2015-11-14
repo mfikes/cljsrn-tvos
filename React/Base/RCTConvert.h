@@ -67,7 +67,11 @@ typedef NSURL RCTFileURL;
 + (UIReturnKeyType)UIReturnKeyType:(id)json;
 
 + (UIViewContentMode)UIViewContentMode:(id)json;
+#if TARGET_OS_IOS
 + (UIBarStyle)UIBarStyle:(id)json;
+#elif TARGET_OS_TV
+//#warning Just warning here since it's not supported on tvOS
+#endif
 
 + (CGFloat)CGFloat:(id)json;
 + (CGPoint)CGPoint:(id)json;

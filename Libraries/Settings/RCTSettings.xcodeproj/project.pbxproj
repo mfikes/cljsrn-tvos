@@ -8,9 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		13DBA45E1AEE749000A17CF8 /* RCTSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DBA45D1AEE749000A17CF8 /* RCTSettingsManager.m */; };
+		2CE53B011BF716FA00326803 /* RCTSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DBA45D1AEE749000A17CF8 /* RCTSettingsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2CE53B031BF716FA00326803 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -26,9 +36,17 @@
 		134814201AA4EA6300B7C361 /* libRCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTSettings.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13DBA45C1AEE749000A17CF8 /* RCTSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSettingsManager.h; sourceTree = "<group>"; };
 		13DBA45D1AEE749000A17CF8 /* RCTSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSettingsManager.m; sourceTree = "<group>"; };
+		2CE53B071BF716FA00326803 /* libRCTSettingsTVOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTSettingsTVOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2CE53B021BF716FA00326803 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D81A9E6C8500147676 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,12 +71,30 @@
 				13DBA45C1AEE749000A17CF8 /* RCTSettingsManager.h */,
 				13DBA45D1AEE749000A17CF8 /* RCTSettingsManager.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				2CE53B071BF716FA00326803 /* libRCTSettingsTVOS.a */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2CE53AFF1BF716FA00326803 /* RCTSettingsTVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE53B041BF716FA00326803 /* Build configuration list for PBXNativeTarget "RCTSettingsTVOS" */;
+			buildPhases = (
+				2CE53B001BF716FA00326803 /* Sources */,
+				2CE53B021BF716FA00326803 /* Frameworks */,
+				2CE53B031BF716FA00326803 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCTSettingsTVOS;
+			productName = RCTDataManager;
+			productReference = 2CE53B071BF716FA00326803 /* libRCTSettingsTVOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		58B511DA1A9E6C8500147676 /* RCTSettings */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RCTSettings" */;
@@ -103,11 +139,20 @@
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RCTSettings */,
+				2CE53AFF1BF716FA00326803 /* RCTSettingsTVOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2CE53B001BF716FA00326803 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE53B011BF716FA00326803 /* RCTSettingsManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,6 +164,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2CE53B051BF716FA00326803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos9.0;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2CE53B061BF716FA00326803 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos9.0;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		58B511ED1A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -238,6 +315,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2CE53B041BF716FA00326803 /* Build configuration list for PBXNativeTarget "RCTSettingsTVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE53B051BF716FA00326803 /* Debug */,
+				2CE53B061BF716FA00326803 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RCTSettings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
