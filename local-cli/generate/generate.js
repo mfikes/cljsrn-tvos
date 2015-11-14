@@ -51,6 +51,7 @@ function _generate(argv, config, resolve, reject) {
     ['react:app', args['project-name']],
     {
       'skip-ios': args.platform !== 'ios',
+      'skip-tvos': args.platform !== 'tvos',
       'skip-android': args.platform !== 'android'
     },
     () => {

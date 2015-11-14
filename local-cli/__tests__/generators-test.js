@@ -67,6 +67,16 @@ xdescribe('React Yeoman Generators', function() {
       assert.noFileContent('index.ios.js', '<%= name %>');
     });
 
+    it('replaces vars in index.tvos.js', function() {
+      assert.fileContent('index.tvos.js', 'var TestApp = React.createClass({');
+      assert.fileContent(
+        'index.tvos.js',
+        'AppRegistry.registerComponent(\'TestApp\', () => TestApp);'
+      );
+
+      assert.noFileContent('index.tvos.js', '<%= name %>');
+    });
+
     it('replaces vars in index.android.js', function() {
       assert.fileContent('index.android.js', 'var TestApp = React.createClass({');
       assert.fileContent(
@@ -74,11 +84,17 @@ xdescribe('React Yeoman Generators', function() {
         'AppRegistry.registerComponent(\'TestApp\', () => TestApp);'
       );
 
-      assert.noFileContent('index.ios.js', '<%= name %>');
+      assert.noFileContent('index.android.js', '<%= name %>');
     });
 
     it('composes with ios generator', function() {
       var stat = fs.statSync('ios');
+
+      expect(stat.isDirectory()).toBe(true);
+    });
+
+    it('composes with tvos generator', function() {
+      var stat = fs.statSync('tvos');
 
       expect(stat.isDirectory()).toBe(true);
     });
@@ -260,6 +276,98 @@ xdescribe('React Yeoman Generators', function() {
       assert.fileContent(xcscheme, 'TestAppIOS.xcodeproj');
       assert.fileContent(xcscheme, '"TestAppIOSTests.xctest"');
       assert.fileContent(xcscheme, '"TestAppIOSTests"');
+
+      assert.noFileContent(xcscheme, '<%= name %>');
+    });
+  });
+
+  describe('react:tvos', function() {
+    var assert;
+
+    beforeEach(function() {
+      // A deep dependency of yeoman spams console.log with giant json objects.
+      // yeoman-generator/node_modules/
+      //   download/node_modules/
+      //     caw/node_modules/
+      //       get-proxy/node_modules/
+      //         rc/index.js
+      var log = console.log;
+      console.log = function() {};
+      assert = require('yeoman-generator').assert;
+      var helpers = require('yeoman-generator').test;
+      console.log = log;
+
+      var generated = false;
+
+      runs(function() {
+        helpers.run(path.resolve(__dirname, '../generator-tvos'))
+          .withArguments(['TestAppTVOS'])
+          .on('end', function() {
+            generated = true;
+          });
+      });
+
+      waitsFor(function() {
+        jest.runAllTicks();
+        jest.runOnlyPendingTimers();
+        return generated;
+      }, "generation", 750);
+    });
+
+    it('creates files', function() {
+      assert.file([
+        'ios/TestAppTVOS/AppDelegate.h',
+        'ios/TestAppTVOS/AppDelegate.m',
+        'ios/TestAppTVOS/Base.lproj/LaunchScreen.xib',
+        'ios/TestAppTVOS/Images.xcassets/AppIcon.appiconset/Contents.json',
+        'ios/TestAppTVOS/Info.plist',
+        'ios/TestAppTVOS/main.m',
+        'ios/TestAppTVOS.xcodeproj/project.pbxproj',
+        'ios/TestAppTVOS.xcodeproj/xcshareddata/xcschemes/TestAppTVOS.xcscheme',
+        'ios/TestAppTVOSTests/TestAppTVOSTests.m',
+        'ios/TestAppTVOSTests/Info.plist'
+      ]);
+    });
+
+    it('replaces vars in AppDelegate.m', function() {
+      var appDelegate = 'tvos/TestAppTVOS/AppDelegate.m';
+
+      assert.fileContent(appDelegate, 'moduleName:@"TestAppTVOS"');
+      assert.noFileContent(appDelegate, '<%= name %>');
+    });
+
+    it('replaces vars in LaunchScreen.xib', function() {
+      var launchScreen = 'tvos/TestAppTVOS/Base.lproj/LaunchScreen.xib';
+
+      assert.fileContent(launchScreen, 'text="TestAppTVOS"');
+      assert.noFileContent(launchScreen, '<%= name %>');
+    });
+
+    it('replaces vars in TestAppTVOSTests.m', function() {
+      var tests = 'tvos/TestAppTVOSTests/TestAppTVOSTests.m';
+
+      assert.fileContent(tests, '@interface TestAppTVOSTests : XCTestCase');
+      assert.fileContent(tests, '@implementation TestAppTVOSTests');
+      assert.noFileContent(tests, '<%= name %>');
+    });
+
+    it('replaces vars in project.pbxproj', function() {
+      var pbxproj = 'tvos/TestAppTVOS.xcodeproj/project.pbxproj';
+      assert.fileContent(pbxproj, '"TestAppTVOS"');
+      assert.fileContent(pbxproj, '"TestAppTVOSTests"');
+      assert.fileContent(pbxproj, 'TestAppTVOS.app');
+      assert.fileContent(pbxproj, 'TestAppTVOSTests.xctest');
+
+      assert.noFileContent(pbxproj, '<%= name %>');
+    });
+
+    it('replaces vars in xcscheme', function() {
+      var xcscheme = 'tvos/TestAppTVOS.xcodeproj/xcshareddata/xcschemes/TestAppTVOS.xcscheme';
+      assert.fileContent(xcscheme, '"TestAppTVOS"');
+      assert.fileContent(xcscheme, '"TestAppTVOS.app"');
+      assert.fileContent(xcscheme, 'TestAppTVOS.xcodeproj');
+      assert.fileContent(xcscheme, '"TestAppTVOSTests.xctest"');
+      assert.fileContent(xcscheme, '"TestAppTVOSTests"');
 
       assert.noFileContent(xcscheme, '<%= name %>');
     });
