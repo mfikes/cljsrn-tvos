@@ -70,7 +70,9 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 
   UIView *view = (UIView *)(props ? [_manager viewWithProps:props] : [_manager view]);
   view.reactTag = tag;
+#if TARGET_OS_IOS
   view.multipleTouchEnabled = YES;
+#endif
   view.userInteractionEnabled = YES; // required for touch handling
   view.layer.allowsGroupOpacity = YES; // required for touch handling
   return view;

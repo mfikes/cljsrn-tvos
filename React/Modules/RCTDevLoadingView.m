@@ -75,7 +75,9 @@ RCT_EXPORT_MODULE()
       CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
       _window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 22)];
       _window.backgroundColor = [UIColor blackColor];
+#if TARGET_OS_IOS
       _window.windowLevel = UIWindowLevelStatusBar + 1;
+#endif
 
       _label = [[UILabel alloc] initWithFrame:_window.bounds];
       _label.font = [UIFont systemFontOfSize:12.0];

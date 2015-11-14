@@ -62,6 +62,7 @@ RCT_EXTERN UIApplication *RCTSharedApplication(void);
 // or view controller, e.g. to present a modal view controller or alert.
 RCT_EXTERN UIWindow *RCTKeyWindow(void);
 
+#if TARGET_OS_IOS
 // Return a UIAlertView initialized with the given values
 // or nil if running in an app extension
 RCT_EXTERN UIAlertView *RCTAlertView(NSString *title,
@@ -69,6 +70,9 @@ RCT_EXTERN UIAlertView *RCTAlertView(NSString *title,
                                      id delegate,
                                      NSString *cancelButtonTitle,
                                      NSArray<NSString *> *otherButtonTitles);
+#elif TARGET_OS_TV
+//#warning TODO: Update AlertView
+#endif
 
 // Return YES if image has an alpha component
 RCT_EXTERN BOOL RCTImageHasAlpha(CGImageRef image);

@@ -145,7 +145,11 @@ RCT_EXPORT_MODULE()
   }
 
   // Start observing location
+#if TARGET_OS_IOS
   [_locationManager startUpdatingLocation];
+#elif TARGET_OS_TV
+//#warning tvOS doesn't support updating location
+#endif
 }
 
 #pragma mark - Timeout handler
@@ -261,8 +265,12 @@ RCT_EXPORT_METHOD(getCurrentPosition:(RCTLocationOptions)options
       @"altitude": @(location.altitude),
       @"accuracy": @(location.horizontalAccuracy),
       @"altitudeAccuracy": @(location.verticalAccuracy),
+#if TARGET_OS_IOS
       @"heading": @(location.course),
       @"speed": @(location.speed),
+#elif TARGET_OS_TV
+//#warning tvOS doesn't support heading and speed
+#endif
     },
     @"timestamp": @(CFAbsoluteTimeGetCurrent() * 1000.0) // in ms
   };

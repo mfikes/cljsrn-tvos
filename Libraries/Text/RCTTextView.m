@@ -57,7 +57,11 @@
 
     _textView = [[RCTUITextView alloc] initWithFrame:self.bounds];
     _textView.backgroundColor = [UIColor clearColor];
+#if TARGET_OS_IOS
     _textView.scrollsToTop = NO;
+#elif TARGET_OS_TV
+//#warning scrollsToTop not supported on tvOS
+#endif
     _textView.delegate = self;
 
     _previousSelectionRange = _textView.selectedTextRange;
@@ -188,7 +192,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     _placeholderView = [[UITextView alloc] initWithFrame:self.bounds];
     _placeholderView.backgroundColor = [UIColor clearColor];
     _placeholderView.scrollEnabled = false;
+#if TARGET_OS_IOS
     _placeholderView.scrollsToTop = NO;
+#elif TARGET_OS_TV
+//#warning scrollsToTop not supported on tvOS
+#endif
     _placeholderView.attributedText =
     [[NSAttributedString alloc] initWithString:_placeholder attributes:@{
       NSFontAttributeName : (_textView.font ? _textView.font : [self defaultPlaceholderFont]),

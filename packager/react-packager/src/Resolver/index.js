@@ -86,7 +86,7 @@ class Resolver {
         // remove it from here.
         'parse',
       ],
-      platforms: ['ios', 'android'],
+      platforms: ['ios', 'tvos', 'android'],
       fileWatcher: opts.fileWatcher,
       cache: opts.cache,
     });

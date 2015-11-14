@@ -63,8 +63,12 @@ RCT_EXPORT_MODULE()
   _injectedObjects = [NSMutableDictionary new];
   [_socket setDelegateDispatchQueue:_jsQueue];
 
+#if TARGET_OS_IOS
   NSURL *startDevToolsURL = [NSURL URLWithString:@"/launch-chrome-devtools" relativeToURL:_url];
   [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:startDevToolsURL] delegate:nil];
+#elif TARGET_OS_TV
+//#warning Need to update this to use NSURLSession
+#endif
 
   if (![self connectToProxy]) {
     RCTLogError(@"Connection to %@ timed out. Are you running node proxy? If \

@@ -283,6 +283,8 @@ if (Platform.OS === 'android') {
     ),
     uiViewClassName: 'RCTMap',
   });
+} else if(Platform.OS === 'tvos') {
+  RCTMap = require('UnimplementedView');
 } else {
   var RCTMap = requireNativeComponent('RCTMap', MapView, {
     nativeOnly: {onChange: true, onPress: true}

@@ -118,6 +118,8 @@ if (Platform.OS === 'android') {
   var RCTSwitch = requireNativeComponent('AndroidSwitch', null, {
     nativeOnly: { onChange: true, on: true, enabled: true }
   });
+} else if (Platform.OS === 'tvos') {
+  var RCTSwitch = require('UnimplementedView');
 } else {
   var RCTSwitch = requireNativeComponent('RCTSwitch', Switch, {
     nativeOnly: { onChange: true }

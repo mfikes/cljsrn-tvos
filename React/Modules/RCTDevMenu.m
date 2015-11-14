@@ -124,7 +124,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 
 @end
 
+#if TARGET_OS_IOS
 @interface RCTDevMenu () <RCTBridgeModule, UIActionSheetDelegate, RCTInvalidating>
+#elif TARGET_OS_TV
+@interface RCTDevMenu () <RCTBridgeModule, RCTInvalidating>
+#endif
 
 @property (nonatomic, strong) Class executorClass;
 
@@ -132,7 +136,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 
 @implementation RCTDevMenu
 {
+#if TARGET_OS_IOS
   UIActionSheet *_actionSheet;
+#elif TARGET_OS_TV
+  
+#endif
   NSUserDefaults *_defaults;
   NSMutableDictionary *_settings;
   NSURLSessionDataTask *_updateTask;
@@ -350,7 +358,10 @@ RCT_EXPORT_MODULE()
 {
   _presentedItems = nil;
   [_updateTask cancel];
+#if TARGET_OS_IOS
   [_actionSheet dismissWithClickedButtonIndex:_actionSheet.cancelButtonIndex animated:YES];
+#elif TARGET_OS_TV
+#endif
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -363,12 +374,15 @@ RCT_EXPORT_MODULE()
 
 - (void)toggle
 {
+#if TARGET_OS_IOS
   if (_actionSheet) {
     [_actionSheet dismissWithClickedButtonIndex:_actionSheet.cancelButtonIndex animated:YES];
     _actionSheet = nil;
   } else {
     [self show];
   }
+#elif TARGET_OS_TV
+#endif
 }
 
 - (void)addItem:(NSString *)title handler:(void(^)(void))handler
@@ -399,6 +413,7 @@ RCT_EXPORT_MODULE()
   Class chromeExecutorClass = NSClassFromString(@"RCTWebSocketExecutor");
   if (!chromeExecutorClass) {
     [items addObject:[RCTDevMenuItem buttonItemWithTitle:[NSString stringWithFormat:@"%@ Debugger Unavailable", _webSocketExecutorName] handler:^{
+#if TARGET_OS_IOS
       UIAlertView *alert = RCTAlertView(
         [NSString stringWithFormat:@"%@ Debugger Unavailable", _webSocketExecutorName],
         [NSString stringWithFormat:@"You need to include the RCTWebSocket library to enable %@ debugging", _webSocketExecutorName],
@@ -406,6 +421,8 @@ RCT_EXPORT_MODULE()
         @"OK",
         nil);
       [alert show];
+#elif TARGET_OS_TV
+#endif
     }]];
   } else {
     BOOL isDebuggingInChrome = _executorClass && _executorClass == chromeExecutorClass;
@@ -434,6 +451,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(show)
 {
+#if TARGET_OS_IOS
   if (_actionSheet || !_bridge || RCTRunningInAppExtension()) {
     return;
   }
@@ -464,8 +482,11 @@ RCT_EXPORT_METHOD(show)
   [actionSheet showInView:RCTKeyWindow().rootViewController.view];
   _actionSheet = actionSheet;
   _presentedItems = items;
+#elif TARGET_OS_TV
+#endif
 }
 
+#if TARGET_OS_IOS
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
   _actionSheet = nil;
@@ -487,6 +508,8 @@ RCT_EXPORT_METHOD(show)
   }
   return;
 }
+#elif TARGET_OS_TV
+#endif
 
 RCT_EXPORT_METHOD(reload)
 {
