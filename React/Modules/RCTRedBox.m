@@ -206,6 +206,29 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   return cell;
 }
 
+#if TARGET_OS_TV
+
+- (void)tableView:(UITableView *)tableView didUpdateFocusInContext:(UITableViewFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator * __unused)coordinator
+{
+  NSIndexPath *prevIndexPath = [context previouslyFocusedIndexPath];
+  if (prevIndexPath)
+  {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:prevIndexPath];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+  }
+  
+  NSIndexPath *nextIndexPath = [context nextFocusedIndexPath];
+  if (nextIndexPath)
+  {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:nextIndexPath];
+    cell.textLabel.textColor = [UIColor redColor];
+    cell.detailTextLabel.textColor = [UIColor redColor];
+  }
+}
+
+#endif
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (indexPath.section == 0) {
