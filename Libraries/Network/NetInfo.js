@@ -138,7 +138,7 @@ type ConnectivityStateAndroid = $Enum<{
 
 var _subscriptions = new Map();
 
-if (Platform.OS === 'ios') {
+if (Platform.OS === 'ios' || Platform.OS === 'tvos') {
   var _isConnected = function(
     reachability: ReachabilityStateIOS
   ): bool {

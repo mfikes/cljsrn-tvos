@@ -180,7 +180,8 @@ function setUpNumber() {
 
 function setUpDevTools() {
   // not when debugging in chrome
-  if (__DEV__ && !window.document && require('Platform').OS === 'ios') {
+  var Platform = require('Platform');
+  if (__DEV__ && !window.document && (Platform.OS === 'ios' || Platform.OS === 'tvos')) {
     var setupDevtools = require('setupDevtools');
     setupDevtools();
   }
