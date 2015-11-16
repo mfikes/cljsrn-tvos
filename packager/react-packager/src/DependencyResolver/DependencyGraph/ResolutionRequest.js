@@ -66,7 +66,7 @@ class ResolutionRequest {
 
     const forgive = (error) => {
       if (error.type !== 'UnableToResolveError' ||
-        this._platform === 'ios') {
+        this._platform === 'ios' || this._platform === 'tvos') {
         throw error;
       }
 

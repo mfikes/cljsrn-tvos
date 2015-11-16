@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const SUPPORTED_PLATFORM_EXTS = ['android', 'ios', 'web'];
+const SUPPORTED_PLATFORM_EXTS = ['android', 'ios', 'tvos', 'web'];
 
 const re = new RegExp(
   '[^\\.]+\\.(' + SUPPORTED_PLATFORM_EXTS.join('|') + ')\\.\\w+$'
