@@ -314,9 +314,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     });
   }
 
+#if TARGET_OS_IOS
   if (textView.editable && [textView isFirstResponder]) {
     [textView scrollRangeToVisible:textView.selectedRange];
   }
+#endif
 }
 
 - (void)setText:(NSString *)text
